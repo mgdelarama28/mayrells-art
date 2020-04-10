@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('pageTitle', 'Account Settings')
+@section('pageTitle', 'Drawing')
 
 @section('content')
 	<div class="content-wrapper">
@@ -9,12 +9,13 @@
 	        <div class="container-fluid">
 	            <div class="row mb-2">
 	                <div class="col-sm-6">
-	                    <h1 class="m-0 text-dark">Account Settings</h1>
+	                    <h1 class="m-0 text-dark">Edit Drawing</h1>
 	                </div><!-- /.col -->
 	                
 	                <div class="col-sm-6">
 	                    <ol class="breadcrumb float-sm-right">
-	                        <li class="breadcrumb-item"><a href="{{ route('admin.account_settings') }}">Account Settings</a></li>
+	                        <li class="breadcrumb-item"><a href="#">Drawings</a></li>
+	                        <li class="breadcrumb-item active"><a href="#">Edit</a></li>
 	                    </ol>
 	                </div><!-- /.col -->
 	            </div><!-- /.row -->
@@ -30,37 +31,35 @@
 	                    <div class="card card-primary card-outline">
 	                        <div class="card-body">
 	                            <p class="card-text">
-									
+	                                Drawing
 	                            </p>
 
 	                            <div class="row">
 	                            	<div class="col-md-12">
-	                            		@if(session('status'))
-											<div class="alert alert-success text-center">{{ session('status') }}</div>
-	                            		@endif
-
-	                            		<form action="{{ route('admin.update_account_settings') }}" method="POST" enctype="multipart/form-data">
+	                            		<form action="{{ route('admin.drawings.update', $drawing->id) }}" method="POST" enctype="multipart/form-data">
 	                            			@csrf
 
 	                            			<div class="row mb-2">
 	                            				<div class="col-md-6">
 	                            					<div class="form-group">
-				                                        <label for="first_name">First Name</label>
-				                                        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First Name" value="{{ $user->renderFirstName() }}" required>
+				                                        <label for="name">Name</label>
+				                                        <input name="name" type="text" class="form-control" id="name" placeholder="Name" value="{{ $drawing->name }}">
 				                                    </div>
-	                            				</div>
-
-	                            				<div class="col-md-6">
+												</div>
+												
+												<div class="col-md-6">
 	                            					<div class="form-group">
-				                                        <label for="last_name">Last Name</label>
-				                                        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last Name" value="{{ $user->renderLastName() }}" required>
-				                                    </div>
-	                            				</div>
+				                                        <label for="category_id">Category</label>
+				                                        <select class="form-control" name="category_id" id="category_id">
+															@foreach($categories as $category)
+																@if($category->id == $drawing->category_id)
+																	<option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+																@else
+																	<option value="{{ $category->id }}">{{ $category->name }}</option>
+																@endif
 
-	                            				<div class="col-md-6">
-	                            					<div class="form-group">
-				                                        <label for="email">Email</label>
-				                                        <input name="email" type="email" class="form-control" id="email" placeholder="Email" value="{{ $user->renderEmail() }}" required>
+															@endforeach
+														</select>
 				                                    </div>
 	                            				</div>
 	                            			</div>
@@ -68,23 +67,34 @@
 	                            			<div class="row mb-2">
 	                            				<div class="col-md-6">
 	                            					<div class="form-group">
-				                                        <label for="profile_picture_path">Profile Picture</label>
-				                                        
-				                                        <div class="row mb-1">
-				                                        	<div class="col-md-12">
-				                                        		<img id="profile_picture" src="{{ $user->renderProfilePicture() }}" alt="Admin Profile Picture" width="300px" height="300px">
-				                                        	</div>
-				                                        </div>
-				                                        <input name="profile_picture_path" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" id="profile_picture_path">
+				                                        <label for="description">Description</label>
+				                                        <textarea class="form-control" name="description" id="" cols="30" rows="10" placeholder="Description">{{ $drawing->description }}</textarea>
+				                                    </div>
+												</div>
+												
+												<div class="col-md-6">
+	                            					<div class="form-group">
+	                            						<label for="date_created">Date Created</label>
+														<input type="date" name="date_created" id="date_created" class="form-control mt-2" value="{{ $drawing->date_created }}">
+				                                    </div>
+	                            				</div>
+	                            			</div>
+
+	                            			<div class="row mb-2">
+	                            				<div class="col-md-6">
+	                            					<div class="form-group">
+	                            						<label for="image_path">Image</label><br>
+				                                        <img src="{{ $drawing->renderImage() }}" alt="" width="300px" height="300px">
+				                                        <input type="file" name="image_path" id="image_path" class="form-control mt-2">
 				                                    </div>
 	                            				</div>
 	                            			</div>
 
 	                            			<div class="row mb-2">
 												<div class="col-md-1">
-		                            				<div class="form-group">
-		                            					<button class="btn btn-primary form-control">Update</button>
-		                            				</div>
+	                            				<div class="form-group">
+	                            					<button class="btn btn-primary form-control">Submit</button>
+	                            				</div>
 	                            				</div>
 	                            			</div>
 	                            		</form>
@@ -107,7 +117,6 @@
 @endsection
 
 @section('scripts')
-	@section('scripts')
 	<script>
 		$(document).ready(function(){
 			$('#profile_picture_path').change(function() {
@@ -126,10 +135,9 @@
 			       reader.readAsDataURL(input.files[0]);
 			    } else
 			    {
-			      $('#profile_picture').attr('src', '/storage/default_images/no-image.png');
+			      $('#profile_picture').attr('src', '/storage/no_image.png');
 			    }
 			});
 		});
 	</script>
-@endsection
 @endsection
