@@ -20,4 +20,9 @@ Route::namespace('Web')->name('web.')->group(function() {
 			Route::post('login', 'LoginController@login')->name('login');
 		});
 	});
+
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/portfolio/{categoryName}', 'HomeController@portfolio')->name('portfolio');
+	
+	Route::post('/messages', 'MessageController@store')->name('messages.store');
 });

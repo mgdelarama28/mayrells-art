@@ -32,7 +32,24 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function() {
 		Route::get('/permissions', 'PermissionController@index')->name('permissions.index');
 		Route::get('/activity_logs', 'ActivityLogController@index')->name('activity_logs');
 
-		/** Sample */
+		/** Categories */
+		Route::get('/categories', 'CategoryController@index')->name('categories.index');
+		Route::get('/categories/{id}/edit', 'CategoryController@edit')->name('categories.edit');
+		Route::get('/categories/{id}/destroy', 'CategoryController@destroy')->name('categories.destroy');
+
+		Route::post('/categories/{id}', 'CategoryController@update')->name('categories.update');
+
+		/** Drawings */
+		Route::get('/drawings', 'DrawingController@index')->name('drawings.index');
+		Route::get('/drawings/create', 'DrawingController@create')->name('drawings.create');
+		Route::get('/drawings/{id}', 'DrawingController@show')->name('drawings.show');
+		Route::get('/drawings/{id}/edit', 'DrawingController@edit')->name('drawings.edit');
+		Route::get('/drawings/{id}/destroy', 'DrawingController@destroy')->name('drawings.destroy');
+
+		Route::post('/drawings', 'DrawingController@store')->name('drawings.store');
+		Route::post('/drawings/{id}', 'DrawingController@update')->name('drawings.update');
+
+		/** Samples */
 		Route::get('/samples', 'SampleController@index')->name('samples.index');
 		Route::get('/samples/create', 'SampleController@create')->name('samples.create');
 		Route::get('/samples/{id}', 'SampleController@show')->name('samples.show');
@@ -50,5 +67,10 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function() {
 
 		Route::post('/roles', 'RoleController@store')->name('roles.store');
 		Route::post('/roles/{id}', 'RoleController@update')->name('roles.update');
+
+		/** Messages */
+		Route::get('/messages', 'MessageController@index')->name('messages.index');
+		Route::get('/messages/{id}', 'MessageController@show')->name('messages.show');
+		Route::get('/messages/{id}/destroy', 'MessageController@destroy')->name('messages.destroy');
 	});
 });

@@ -28,7 +28,7 @@ class DashboardController extends Controller
     	$vars = $request->except(['_token', 'profile_picture_path']);
 
         if ($request->profile_picture_path):
-            $vars['profile_picture_path'] = $request->profile_picture_path->store('profile_pictures', 'public');
+            $vars['profile_picture_path'] = $request->profile_picture_path->store('profile-pictures', 'public');
         endif;
 
     	$user->update($vars);

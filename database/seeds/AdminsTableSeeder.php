@@ -8,9 +8,10 @@ class AdminsTableSeeder extends Seeder
 {
 	protected $admins = [
 		[
-			'first_name' => 'App',
-			'last_name' => 'Admin',
+			'first_name' => 'Mayrell Joyce',
+			'last_name' => 'Mandac',
 			'email' => 'admin@admin.com',
+			'profile_picture_path' => 'cover-images/profile-image.jpeg',
 			'password' => 'password',
 		],
 	];
@@ -22,8 +23,6 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::truncate();
-
         DB::beginTransaction();
 
 	        $this->command->info('Seeding Admin Users...');
@@ -32,7 +31,8 @@ class AdminsTableSeeder extends Seeder
 	        	$vars = [
 	        		'first_name' => $admin['first_name'],
 	        		'last_name' => $admin['last_name'],
-	        		'email' => $admin['email'],
+					'email' => $admin['email'],
+					'profile_picture_path' => $admin['profile_picture_path'],
 	        		'password' => Hash::make($admin['password']),
 	        		'email_verified_at' => Carbon::now(),
 	        	];

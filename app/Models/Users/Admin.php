@@ -2,7 +2,6 @@
 
 namespace App\Models\Users;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -45,6 +44,16 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     *
+     * Relationships
+     * 
+     */
+    public function drawings()
+    {
+        return $this->hasMany('App\Models\Drawing');
+    }
+
     /** Renders */
     public function renderFirstName()
     {
@@ -63,7 +72,7 @@ class Admin extends Authenticatable
 
     public function renderProfilePicture()
     {
-        $path = asset('storage/default_images/no-image.png');
+        $path = asset('storage/default-images/no-image.png');
 
         if ($this->profile_picture_path){
             $path = asset('storage/' . $this->profile_picture_path);

@@ -9,9 +9,10 @@ class UsersTableSeeder extends Seeder
 {
 	protected $users = [
 		[
-			'first_name' => 'App',
-			'last_name' => 'Admin',
+			'first_name' => 'Mayrell Joyce',
+			'last_name' => 'Mandac',
 			'email' => 'admin@admin.com',
+			'profile_picture_path' => 'cover-images/profile-image.jpeg',
 			'password' => 'password',
 		],
 	];
@@ -33,9 +34,9 @@ class UsersTableSeeder extends Seeder
 	        	$vars = [
 	        		'first_name' => $user['first_name'],
 	        		'last_name' => $user['last_name'],
-	        		'email' => $user['email'],
+					'email' => $user['email'],
 	        		'password' => Hash::make($user['password']),
-	        		'email_verified_at' => Carbon::now(),
+					'email_verified_at' => Carbon::now(),
 	        	];
 
 	        	User::create($vars);
