@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Message;
 use App\Mail\ContactFormMessage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMessageRequest;
 
 class MessageController extends Controller
 {
     protected $recipient = 'mgdelarama.28@gmail.com';
 
-    public function store(Request $request)
+    public function store(StoreMessageRequest $request)
     {
         $vars = $request->except(['_token',]);
         $newMessage = Message::create($vars);

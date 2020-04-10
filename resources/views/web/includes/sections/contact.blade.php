@@ -22,43 +22,60 @@
                 <form id="contactForm" action="{{ route('web.messages.store') }}" method="POST">
                     @csrf
 
+                   
+
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Name</label>
-                            <input class="form-control" id="name" type="text" name="name" placeholder="Name" required="required">
-                            <p class="help-block text-danger"></p>
+                            <input class="form-control" id="name" type="text" name="name" placeholder="Name" required>
+                            
+                            @error('name')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror 
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Email Address</label>
-                            <input class="form-control" id="email" type="email" name="email" placeholder="Email Address" required="required">
-                            <p class="help-block text-danger"></p>
+                            <input class="form-control" id="email" type="email" name="email" placeholder="Email Address" required>
+                            
+                            @error('email')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror 
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Phone Number</label>
-                            <input class="form-control" id="phone" type="tel" name="contact_number" placeholder="Phone Number" required="required">
-                            <p class="help-block text-danger"></p>
+                            <label>Contact Number</label>
+                            <input class="form-control" id="phone" type="tel" name="contact_number" placeholder="Contact Number" required>
+                            
+                            @error('contact_number')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror    
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Subject</label>
-                            <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject" required="required">
-                            <p class="help-block text-danger"></p>
+                            <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject" required>
+                            
+                            @error('subject')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror 
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Message</label>
-                            <textarea class="form-control" id="message" rows="5" name="message" placeholder="Message" required="required"></textarea>
-                            <p class="help-block text-danger"></p>
+                            <textarea class="form-control" id="message" rows="5" name="message" placeholder="Message" required></textarea>
+                            
+                            @error('message')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror 
                         </div>
                     </div>
                 
