@@ -5,7 +5,7 @@
 <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Heading -->
-        <h1 class="masthead-heading text-uppercase mb-0">{{ $category->name }}</h1>
+        <h1 class="masthead-heading text-uppercase mb-0 pt-3">{{ $category->name }}</h1>
 
         <!-- Icon Divider -->
         <div class="divider-custom divider-light">
@@ -69,7 +69,7 @@
                                             <img class="img-fluid rounded mb-5" src="{{ $drawing->renderImage() }}" alt="{{ $drawing->renderName() }}">
                                             
                                             <!-- Portfolio Modal - Text -->
-                                            <p>{{ $drawing->renderDescription() }}</p>
+                                            <p>{{ $drawing->description }}</p>
                                         </div>
                                     </div>
                                 </div>

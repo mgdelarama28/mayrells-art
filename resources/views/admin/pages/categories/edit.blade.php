@@ -39,7 +39,7 @@
 	                            		<form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
 	                            			@csrf
 
-	                            			<div class="row">
+	                            			<div class="row mb-2">
 	                            				<div class="col-md-6">
 	                            					<div class="form-group">
 				                                        <label for="name">Name</label>
@@ -48,17 +48,17 @@
 	                            				</div>
 	                            			</div>
 
-	                            			<div class="row">
+	                            			<div class="row mb-2">
 	                            				<div class="col-md-6">
 	                            					<div class="form-group">
 	                            						<label for="cover_photo_path"></label>
-				                                        <img id="cover_photo" src="{{ $category->renderCoverPhoto() }}" alt="" width="100px" height="100px">
+				                                        <img id="cover_photo" src="{{ $category->renderCoverPhoto() }}" alt="" width="300px" height="300px">
 				                                        <input type="file" name="cover_photo_path" id="cover_photo_path" class="form-control mt-2">
 				                                    </div>
 	                            				</div>
 	                            			</div>
 
-	                            			<div class="row">
+	                            			<div class="row mb-2">
 												<div class="col-md-1">
 	                            				<div class="form-group">
 	                            					<button class="btn btn-primary form-control">Update</button>
