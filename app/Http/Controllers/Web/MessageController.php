@@ -10,7 +10,7 @@ use App\Http\Requests\StoreMessageRequest;
 
 class MessageController extends Controller
 {
-    protected $recipient = 'mgdelarama.28@gmail.com';
+    protected $recipient = 'mandacmayrell@gmail.com';
 
     public function store(StoreMessageRequest $request)
     {
