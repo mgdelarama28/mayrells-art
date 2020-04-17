@@ -49,21 +49,21 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.categories.index') }}" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-cuttlefish nav-icon"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{ route('admin.drawings.index') }}" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-palette nav-icon"></i>
                                 <p>Drawings</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{ route('admin.messages.index') }}" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-envelope nav-icon"></i>
                                 <p>Messages</p>
                             </a>
                         </li>
