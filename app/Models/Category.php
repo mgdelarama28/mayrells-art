@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
@@ -33,12 +34,14 @@ class Category extends Model
 
     public function renderCoverPhoto()
     {
-        $path = asset('storage/default-images/no-image.png');
+        $path = Storage::url('/default-images/no-image.png');
 
         if ($this->cover_photo_path):
-            $path = asset('storage/' . $this->cover_photo_path);
+            $path = Storage::url($this->cover_photo_path);
         endif;
 
+
+        
         return $path;
     }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Models\Users;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -59,10 +60,10 @@ class User extends Authenticatable
 
     public function renderProfilePicture()
     {
-        $path = 'storage/default_images/no_image.jpg';
+        $path = Storage::url('/default_images/no_image.jpg');
 
         if ($this->profile_picture_path){
-            $path = 'storage/' . $this->profile_picture_path;
+            $path = Storage::url($this->profile_picture_path);
         }
 
         return $path;

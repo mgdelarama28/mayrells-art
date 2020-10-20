@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Drawing extends Model
 {
@@ -64,10 +65,10 @@ class Drawing extends Model
 
     public function renderImage()
     {
-        $path = asset('storage/default-images/no-image.png');
+        $path = Storage::url('/default-images/no-image.png');
 
         if ($this->image_path):
-            $path = asset('storage/' . $this->image_path);
+            $path = Storage::url($this->image_path);
         endif;
 
         return $path;
