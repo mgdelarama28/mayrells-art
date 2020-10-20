@@ -72,10 +72,10 @@ class Admin extends Authenticatable
 
     public function renderProfilePicture()
     {
-        $path = asset('storage/default-images/no-image.png');
+        $path = env('AWS_URL') . '/default-images/no-image.png';
 
         if ($this->profile_picture_path){
-            $path = asset('storage/' . $this->profile_picture_path);
+            $path = env('AWS_URL') . '/' . $this->profile_picture_path;
         }
 
         return $path;
