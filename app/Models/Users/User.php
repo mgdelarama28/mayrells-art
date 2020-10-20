@@ -2,9 +2,7 @@
 
 namespace App\Models\Users;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -60,10 +58,10 @@ class User extends Authenticatable
 
     public function renderProfilePicture()
     {
-        $path = Storage::url('/default_images/no_image.jpg');
+        $path = env('AWS_URL') . '/default_images/no_image.jpg';
 
         if ($this->profile_picture_path){
-            $path = Storage::url($this->profile_picture_path);
+            $path = env('AWS_URL') . '/' . $this->profile_picture_path;
         }
 
         return $path;

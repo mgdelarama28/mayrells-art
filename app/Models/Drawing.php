@@ -65,10 +65,10 @@ class Drawing extends Model
 
     public function renderImage()
     {
-        $path = Storage::url('/default-images/no-image.png');
+        $path = env('AWS_URL') . '/default-images/no-image.png';
 
         if ($this->image_path):
-            $path = Storage::url($this->image_path);
+            $path = env('AWS_URL') . '/' . $this->image_path;
         endif;
 
         return $path;
