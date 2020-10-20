@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function renderProfilePicture()
     {
-        $path = env('AWS_URL') . '/default_images/no_image.jpg';
+        $path = env('AWS_URL') . '/default_images/no_image.png';
 
         if ($this->profile_picture_path){
             $path = env('AWS_URL') . '/' . $this->profile_picture_path;
