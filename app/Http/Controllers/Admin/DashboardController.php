@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -28,7 +29,12 @@ class DashboardController extends Controller
     	$vars = $request->except(['_token', 'profile_picture_path']);
 
         if ($request->profile_picture_path):
-            $vars['profile_picture_path'] = $request->profile_picture_path->store('profile-pictures', 'public');
+            $profile_picture_path = $request->file('profile_picture_path');
+            $vars['profile_picture_path'] = Storage::disk('s3')->putFileAs(
+                'profile-pictures',
+                $profile_picture_path,
+                $profile_picture_path->getClientOriginalName()
+            );
         endif;
 
     	$user->update($vars);

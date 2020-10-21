@@ -11,7 +11,7 @@ class AdminsTableSeeder extends Seeder
 			'first_name' => 'Mayrell Joyce',
 			'last_name' => 'Mandac',
 			'email' => 'admin@admin.com',
-			'profile_picture_path' => 'cover-images/profile-image.jpeg',
+			'profile_picture_path' => 'profile-pictures/profile-image.jpeg',
 			'password' => 'password',
 		],
 	];

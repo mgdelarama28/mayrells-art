@@ -9,7 +9,7 @@
 		{{-- {{ dd(route('login')) }} --}}
 		@csrf
 		<div class="form-group has-feedback">
-			<input type="email" class="form-control" name="email" placeholder="Email">
+			<input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" required>
 			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
 			@error('email')

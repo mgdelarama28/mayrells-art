@@ -7,6 +7,7 @@ use App\Models\Drawing;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\DrawingPostRequest;
 
 class DrawingController extends Controller
@@ -127,15 +128,30 @@ class DrawingController extends Controller
     {
         switch ($categoryId):
             case 1:
-                return $imagePath->store('portfolio/baybayin', 'public');
+                $image_path = Storage::disk('s3')->putFileAs(
+                    'portfolio/baybayin',
+                    $imagePath,
+                    $imagePath->getClientOriginalName()
+                );
+                return $image_path; 
                 break;
             
             case 2:
-                return $imagePath->store('portfolio/calligraphy', 'public');
+                $image_path = Storage::disk('s3')->putFileAs(
+                    'portfolio/calligraphy',
+                    $imagePath,
+                    $imagePath->getClientOriginalName()
+                );
+                return $image_path;
                 break;
 
             case 3:
-                return $imagePath->store('portfolio/watercolor-art', 'public');
+                $image_path = Storage::disk('s3')->putFileAs(
+                    'portfolio/watercolor-art',
+                    $imagePath,
+                    $imagePath->getClientOriginalName()
+                );
+                return $image_path;
                 break;
         endswitch;
     }
